@@ -23,9 +23,9 @@ Le volume ($v$ en $m^3$) est la multiplication de l'aire de la base ($\pi r^2$ e
 
 La mesure de la hauteur d'un arbre peut être déterminée grâce à un dendromètre. Cet outil mesure très précisément l'angle entre le sol et le sommet de l'arbre. Connaissant la distance à l'arbre au moment de la mesure, il est possible d'en déterminer la hauteur par application du théorème de Pythagore. Pour déterminer cet angle, il faut une vue dégagée sur la cime de l'arbre et assez de recul pour prendre une mesure précise. Il y a donc des situations où il n'est pas possible de déterminer la hauteur de l'arbre précisément.
 
-Généralement, le diamètre (ou le rayon) de l'arbre à sa base n'est pas mesurée, mais bien sa circonférence $c$ à 1,50m du sol. Le rayon est facilement obtenu à partir de cette dernière mesure comme $r = c / 2\pi$ pour permettre ensuite d'utiliser la formule ci-dessus.
+Généralement, le diamètre (ou le rayon) de l'arbre à sa base n'est pas mesuré, mais bien sa circonférence $c$ à 1,50m du sol. Le rayon est facilement obtenu à partir de cette dernière mesure comme $r = c / 2\pi$ pour permettre ensuite d'utiliser la formule ci-dessus.
 
-<!--# Nous anticipons un peu sur la partie modélisation du cours de science des données II ici. Nous y apprendrons, en effet, comment ajuster ce genre de modèle pour réaliser des prédictions. Il s'agit du second niveau d'association entre variables, mais pour l'instant, nous nous bornerons à travailler sur la corrélation (premier niveau d'association). -->
+<!--# Nous anticipons un peu sur la partie modélisation du cours de science des données II ici. Nous y apprendrons, en effet, comment ajuster ce genre de modèle pour réaliser des prédictions. Il s'agit du second niveau d'association entre variables, mais nous nous bornerons à travailler sur la corrélation (premier niveau d'association). -->
 
 Dans le calcul du volume de bois $v$, nous utiliserions donc deux variables *prédictives* $h$ et $c$. Par ailleurs, si les variables prédictives utilisées dans un modèle sont fortement corrélées entre elles, le modèle est *instable*. On parle de *multicolinéarité*.
 
@@ -35,20 +35,33 @@ Des gardes forestiers ont réalisé une série de mesures de hauteurs et de circ
 
 Les données sont mises à disposition par des gardes forestiers avec lesquels nous collaborons. Ces données ne sont pas publiques.
 
-L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier les packages {inferit} version `r packageVersion("inferit")` et {modelit} version `r packageVersion("modelit")` dans la [SciViews Box 2024](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler la version HTML de ce bloc-notes.
+L'analyse est réalisée avec le logiciel R (`r R.version.string`) et en particulier les packages {inferit} version `r packageVersion("inferit")` et {modelit} version `r packageVersion("modelit")` dans la [SciViews Box 2025](https://www.sciviews.org/software/svbox/). [Saturn Cloud](https://saturncloud.io/) (Linux Ubuntu 22.04) est utilisé pour exécuter le code et compiler la version HTML de ce bloc-notes.
 
 Le seuil $\alpha$ du test est fixé à l'avance à 5%.
-
-## Résultats
 
 ```{r setup, include=FALSE}
 # Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
 if (!"tools:tests" %in% search())
   source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
 
+# Configure Knitr pour utiliser AGG comme périphérique graphique
+knitr::opts_chunk$set(dev = "ragg_png")
+
 # Configuration de l'environnement SciViews::R
-___(___, ___ = "fr")
+SciViews::R("infer", lang = "fr")
 ```
+
+<!--% Spécifier si vous avez employé l'intelligence artificielle dans votre projet. -->
+
+```{r ai_comment, output='asis'}
+select_answer(r"-{
+[] -   Ce document a été rédigé en étant assisté par l'Intelligence Artificielle.
+[] -   Ce document a été rédigé sans recours à l'Intelligence Artificielle.}-")
+```
+
+<!-- Précisez ci-dessous l'utilisation que vous avez faite de l'IA. Citez le modèle utilisé. -->
+
+## Résultats
 
 ### Analyse descriptive
 
@@ -152,6 +165,13 @@ select_answer(r"-{
 
 ## Discussion et conclusions
 
-<!--% Ajoutez une phrase de conclusion ci-dessous qui donne une indication utile aux gardes forestiers par rapport à la question qu'ils se posent.-->
+<!--% Discutez des résultats obtenus au regard du but de l'étude.-->
 
-...Votre discussion ici...
+```{r discucomment, output='asis'}
+select_answer(r"-{
+[X] -   La corrélation significative élevée entre hauteur et circonférence implique un risque de multicolinéarité si les deux variables sont utilisées ensemble dans un modèle prédictif du volume de bois.
+[x] -   Il serait préférable de n'utiliser qu'une seule des deux variables (hauteur ou circonférence) comme prédicteur du volume de bois pour éviter l'instabilité du modèle.
+[O] -   La corrélation non significative entre les variables permet d'utiliser les deux prédicteurs sans risque.
+[O] -   Les coefficients de corrélation de Pearson et Spearman très différents indiquent une relation non linéaire entre les variables.
+[O] -   Le test de corrélation non significatif confirme que la multicolinéarité n'est pas un problème pour ce jeu de données.}-")
+```
