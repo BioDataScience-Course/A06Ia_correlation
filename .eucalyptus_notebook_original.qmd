@@ -169,9 +169,9 @@ select_answer(r"-{
 
 ```{r discucomment, output='asis'}
 select_answer(r"-{
-[X] -   La corrélation significative élevée entre hauteur et circonférence implique un risque de multicolinéarité si les deux variables sont utilisées ensemble dans un modèle prédictif du volume de bois.
-[x] -   Il serait préférable de n'utiliser qu'une seule des deux variables (hauteur ou circonférence) comme prédicteur du volume de bois pour éviter l'instabilité du modèle.
-[O] -   La corrélation non significative entre les variables permet d'utiliser les deux prédicteurs sans risque.
-[O] -   Les coefficients de corrélation de Pearson et Spearman très différents indiquent une relation non linéaire entre les variables.
-[O] -   Le test de corrélation non significatif confirme que la multicolinéarité n'est pas un problème pour ce jeu de données.}-")
+[] -   La corrélation significative élevée entre hauteur et circonférence implique un risque de multicolinéarité si les deux variables sont utilisées ensemble dans un modèle prédictif du volume de bois.
+[] -   Il serait préférable de n'utiliser qu'une seule des deux variables (hauteur ou circonférence) comme prédicteur du volume de bois pour éviter l'instabilité du modèle.
+[] -   La corrélation non significative entre les variables permet d'utiliser les deux prédicteurs sans risque.
+[] -   Les coefficients de corrélation de Pearson et Spearman très différents indiquent une relation non linéaire entre les variables.
+[] -   Le test de corrélation non significatif confirme que la multicolinéarité n'est pas un problème pour ce jeu de données.}-")
 ```
