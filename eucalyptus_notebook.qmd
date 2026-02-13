@@ -148,6 +148,7 @@ select_answer(r"-{
 
 Cette corrélation est-elle significative ?
 
+<!-- TODO : attention, il faut reviser les tests d'hytpothèse. L'alternative est à changer. -->
 <!--% Effectuez un test d'hypothèse pour déterminer si la corrélation selon Pearson est significative au seuil alpha de 5%. -->
 
 ```{r corrtest, record='RNP', arg='data.name,method,alternative,estimate'}
